@@ -12,6 +12,7 @@ func load(file string) {
 	if err != nil {
 		panic(err)
 	}
+	defer fd.Close()
 	sc := bufio.NewScanner(fd)
 	for sc.Scan() {
 		stopwords[sc.Text()] = true
