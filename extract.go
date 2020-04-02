@@ -65,6 +65,9 @@ func NewFromUrl(urlStr string) (ext *extractor, err error) {
 	}
 	//@see : https://github.com/golang/net/blob/master/html/charset/charset.go
 	reader, err := charset.NewReader(resp.Body, strings.ToLower(resp.Header.Get("Content-Type")))
+	if err != nil {
+		return
+	}
 	defer resp.Body.Close()
 	bs, err := ioutil.ReadAll(reader)
 	if err != nil {
